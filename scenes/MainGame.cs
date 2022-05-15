@@ -27,11 +27,6 @@ public class MainGame : Node2D
 			throw new ApplicationException($"{GetPath()}: No puck scene selected");
 		}
 
-		if (GetTree().GetNodesInGroup("Puck").Count == 0)
-		{
-			SpawnPuck();
-		}
-
 		foreach (Goal goal in GetTree().GetNodesInGroup("Goals"))
 		{
 			goal.Connect("body_entered",
@@ -39,6 +34,8 @@ public class MainGame : Node2D
 			             "OnGoalBodyEntered",
 			             new Array { goal.Whose });
 		}
+
+		SpawnPuck();
 	}
 
 
