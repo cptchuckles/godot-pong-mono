@@ -42,7 +42,7 @@ public class MainGame : Node2D
 	}
 
 
-	public void SpawnPuck()
+	private void SpawnPuck()
 	{
 		if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
 
@@ -53,7 +53,7 @@ public class MainGame : Node2D
 	}
 
 
-	public void OnGoalBodyEntered(Node body, string whose)
+	private void OnGoalBodyEntered(Node body, string whose)
 	{
 		var puck = body as Puck;
 		if (puck == null) return;
