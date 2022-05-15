@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTest", "MonoTest.csproj", "{5CFAADB7-7ABF-460A-BE3C-DCB13AA17D53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongMono", "PongMono.csproj", "{5CFAADB7-7ABF-460A-BE3C-DCB13AA17D53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
