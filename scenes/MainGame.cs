@@ -9,9 +9,6 @@ public class MainGame : Node2D
 
 	private Node2D _puckSpawnPoint;
 
-	[Signal]
-	delegate void PuckSpawned(Puck puck);
-
 
 	public override void _Ready()
 	{
@@ -27,13 +24,7 @@ public class MainGame : Node2D
 			throw new ApplicationException($"{GetPath()}: No puck scene selected");
 		}
 
-		foreach (Goal goal in GetTree().GetNodesInGroup("Goals"))
-		{
-			goal.Connect("body_entered",
-			             this,
-			             "OnGoalBodyEntered",
-			             new Array { goal.Whose });
-		}
+		GetNode("/root/EventBus").Connect("GoalBreached", this, "OnGoalBreached");
 
 		SpawnPuck();
 	}
@@ -46,18 +37,13 @@ public class MainGame : Node2D
 		Puck puck = _puckScene.Instance() as Puck;
 		_puckSpawnPoint.AddChild(puck);
 
-		EmitSignal(nameof(PuckSpawned), puck);
+		GetNode("/root/EventBus").EmitSignal("PuckSpawned", puck);
 	}
 
 
-	private void OnGoalBodyEntered(Node body, string whose)
+	private void OnGoalBreached(Goal goal)
 	{
-		var puck = body as Puck;
-		if (puck == null) return;
-
-		GD.Print($"{whose}'s goal has been breached!!!! OH MY GODDDDDDDD");
-
-		puck.QueueFree();
+		GD.Print($"{goal.Whose}'s goal has been breached!!!! OH MY GODDDDDDDD");
 
 		GetTree().CreateTimer(5).Connect("timeout", this, "SpawnPuck");
 	}

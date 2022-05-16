@@ -11,7 +11,7 @@ public class NPCPaddle : KinematicBody2D
 
 	public override void _Ready()
 	{
-		GetParent().Connect("PuckSpawned", this, "OnMainGamePuckSpawned");
+		GetNode("/root/EventBus").Connect("PuckSpawned", this, "OnPuckSpawned");
 	}
 
 
@@ -29,7 +29,7 @@ public class NPCPaddle : KinematicBody2D
 	}
 
 
-	private void OnMainGamePuckSpawned(Puck puck)
+	private void OnPuckSpawned(Puck puck)
 	{
 		_puck = puck;
 	}
