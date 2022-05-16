@@ -10,14 +10,22 @@ public class Puck : KinematicBody2D
 	[Export]
 	private float _acceleration = 1.02f;
 
+	private uint _bonus = 10;
+
+	private uint _points = 10;
+	public uint Points => _points;
+	private Label _pointsLabel;
+
 
 	public override void _Ready()
 	{
-		GD.Randomize();
 		Rotate((float)(GD.Randi() % 8) * Mathf.Pi/4 + Mathf.Pi/8);
 
 		SetAsToplevel(true);
-		GlobalPosition = (GetParent() as Node2D).GlobalPosition;
+		GlobalPosition = ((Node2D)GetParent()).GlobalPosition;
+
+		GetNode<Node2D>("PointsPosition").SetAsToplevel(true);
+		_pointsLabel = GetNode<Label>("PointsPosition/PointsLabel");
 
 		GetNode("VisibilityNotifier2D").Connect("screen_exited", this, "OnExitScreen");
 	}
@@ -29,7 +37,19 @@ public class Puck : KinematicBody2D
 		if (collision != null)
 		{
 			Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
-			_speed *= _acceleration;
+
+			if (collision.Collider is Paddle)
+			{
+				_speed *= _acceleration;
+				_points += _bonus;
+				_bonus += 10;
+			}
+			else
+			{
+				_points += 1;
+			}
+
+			_pointsLabel.Text = $"+{_points}";
 		}
 	}
 
@@ -52,7 +72,9 @@ public class Puck : KinematicBody2D
 
 		if (result["collider"] is Goal goal)
 		{
-			GetNode("/root/EventBus").EmitSignal("GoalBreached", goal);
+			EventBus bus = GetNode<EventBus>("/root/EventBus");
+			bus.EmitSignal("GoalMade", goal);
+			bus.EmitSignal("AwardPoints", goal.Whose, Points);
 		}
 
 		QueueFree();

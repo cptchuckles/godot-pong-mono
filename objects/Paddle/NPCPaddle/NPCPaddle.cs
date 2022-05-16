@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public class NPCPaddle : KinematicBody2D
+public class NPCPaddle : Paddle
 {
-	[Export]
-	private float _speed = 200f;
-
 	private Puck _puck;
 
 

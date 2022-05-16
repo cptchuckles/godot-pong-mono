@@ -12,6 +12,8 @@ public class MainGame : Node2D
 
 	public override void _Ready()
 	{
+		GD.Randomize();
+
 		_puckSpawnPoint = GetNode<Node2D>("PuckSpawnPoint");
 
 		if (! IsInstanceValid(_puckSpawnPoint))
@@ -24,7 +26,9 @@ public class MainGame : Node2D
 			throw new ApplicationException($"{GetPath()}: No puck scene selected");
 		}
 
-		GetNode("/root/EventBus").Connect("GoalBreached", this, "OnGoalBreached");
+		EventBus bus = GetNode<EventBus>("/root/EventBus");
+		bus.Connect("GoalMade", this, "OnGoalMade");
+		bus.Connect("AwardPoints", this, "OnPointsAwarded");
 
 		SpawnPuck();
 	}
@@ -41,10 +45,16 @@ public class MainGame : Node2D
 	}
 
 
-	private void OnGoalBreached(Goal goal)
+	private void OnGoalMade(Goal goal)
 	{
-		GD.Print($"{goal.Whose}'s goal has been breached!!!! OH MY GODDDDDDDD");
+		GD.Print($"{goal.Whose} made a goal!!!! OH MY GODDDDDDDD");
 
 		GetTree().CreateTimer(5).Connect("timeout", this, "SpawnPuck");
+	}
+
+
+	private void OnPointsAwarded(string whom, uint points)
+	{
+		GD.Print($"{whom} gained {points} points!");
 	}
 }

@@ -6,5 +6,7 @@ public class EventBus : Node
 	[Signal]
 	delegate void PuckSpawned(Puck puck);
 	[Signal]
-	delegate void GoalBreached(Goal goal);
+	delegate void GoalMade(Goal goal);
+	[Signal]
+	delegate void AwardPoints(string whom, uint points);
 }

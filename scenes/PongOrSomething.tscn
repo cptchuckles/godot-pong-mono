@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/Paddle/NPCPaddle/NPCPaddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Paddle/PlayerPaddle/PlayerPaddle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/Goal/Goal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/Puck/Puck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/MainGame.cs" type="Script" id=5]
+[ext_resource path="res://objects/Scoreboard/Scoreboard.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 524, 10 )
@@ -27,13 +28,13 @@ position = Vector2( 0, 610 )
 position = Vector2( 514, 0 )
 shape = SubResource( 1 )
 
-[node name="PlayerGoal" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1081, 301 )
-Whose = "Player"
-
 [node name="NPCGoal" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1081, 301 )
+_whose = "NPC"
+
+[node name="PlayerGoal" parent="." instance=ExtResource( 3 )]
 position = Vector2( -57, 302 )
-Whose = "NPC"
+_whose = "Player"
 
 [node name="PuckSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 516, 297 )
@@ -43,3 +44,5 @@ position = Vector2( 12, 302 )
 
 [node name="PlayerPaddle" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1012, 299 )
+
+[node name="Scoreboard" parent="." instance=ExtResource( 6 )]

@@ -9,7 +9,7 @@ radius = 29.0
 [node name="Puck" type="KinematicBody2D" groups=["Puck"]]
 script = ExtResource( 2 )
 _speed = 300.0
-_acceleration = 1.03
+_acceleration = 1.1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -20,3 +20,17 @@ shape = SubResource( 2 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 7.15256e-08, -1.78814e-07 )
 scale = Vector2( 0.2, 0.2 )
+
+[node name="Center" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../PointsPosition")
+update_rotation = false
+
+[node name="PointsPosition" type="Position2D" parent="."]
+
+[node name="PointsLabel" type="Label" parent="PointsPosition"]
+margin_left = -72.0
+margin_top = 37.0
+margin_right = 72.0
+margin_bottom = 51.0
+text = "+10"
+align = 1
