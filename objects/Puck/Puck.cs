@@ -21,13 +21,11 @@ public class Puck : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		MoveAndSlide(GlobalTransform.y * _speed);
-		for (int i=0; i < GetSlideCount(); i++)
+		KinematicCollision2D collision = MoveAndCollide(GlobalTransform.y * _speed * delta);
+		if (collision != null)
 		{
-			KinematicCollision2D collision = GetSlideCollision(i);
 			Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
 			_speed *= _acceleration;
-			break;
 		}
 	}
 }

@@ -9,6 +9,6 @@ public class PlayerPaddle : KinematicBody2D
 	public override void _PhysicsProcess(float delta)
 	{
 		Vector2 movement = new Vector2(0f, Input.GetAxis("ui_up", "ui_down"));
-		MoveAndSlide(movement * _speed);
+		MoveAndCollide(movement * _speed * delta);
 	}
 }
