@@ -3,6 +3,7 @@
 It's an implementation of the cult-classic video-gameboy-PC-playstation game magazine film: the game: the boardgame: on PC: Pong!
 
 Made using the [Godot Game Engine](https://godotengine.org), but the Mono version, because C# is for big bois and grils.
+This is the engine which renders Unity completely irrelevant and debunked, L + Ratio'd, and on suicide watch.
 
 ## Installation
 ```bash
