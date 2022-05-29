@@ -19,7 +19,7 @@ public class Goal : Area2D
 		if (body is Puck puck)
 		{
 			puck.QueueFree();
-			EventBus bus = GetNode<EventBus>("/root/EventBus");
+			var bus = GetNode<EventBus>("/root/EventBus");
 			bus.EmitSignal("GoalMade", this);
 			bus.EmitSignal("AwardPoints", Whose, puck.Points);
 		}

@@ -72,7 +72,7 @@ public class Puck : KinematicBody2D
 
 		if (result["collider"] is Goal goal)
 		{
-			EventBus bus = GetNode<EventBus>("/root/EventBus");
+			var bus = GetNode<EventBus>("/root/EventBus");
 			bus.EmitSignal("GoalMade", goal);
 			bus.EmitSignal("AwardPoints", goal.Whose, Points);
 		}

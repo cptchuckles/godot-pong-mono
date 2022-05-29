@@ -1,5 +1,4 @@
 using Godot;
-using Array = Godot.Collections.Array;
 using System;
 
 public class MainGame : Node2D
@@ -26,7 +25,7 @@ public class MainGame : Node2D
 			throw new ApplicationException($"{GetPath()}: No puck scene selected");
 		}
 
-		EventBus bus = GetNode<EventBus>("/root/EventBus");
+		var bus = GetNode<EventBus>("/root/EventBus");
 		bus.Connect("GoalMade", this, "OnGoalMade");
 		bus.Connect("AwardPoints", this, "OnPointsAwarded");
 
@@ -38,7 +37,7 @@ public class MainGame : Node2D
 	{
 		if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
 
-		Puck puck = _puckScene.Instance() as Puck;
+		var puck = (Puck)_puckScene.Instance();
 		_puckSpawnPoint.AddChild(puck);
 
 		GetNode("/root/EventBus").EmitSignal("PuckSpawned", puck);
