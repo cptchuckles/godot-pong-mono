@@ -28,6 +28,8 @@ public class Puck : KinematicBody2D
 		_pointsLabel = GetNode<Label>("PointsPosition/PointsLabel");
 
 		GetNode("VisibilityNotifier2D").Connect("screen_exited", this, "OnExitScreen");
+
+		GetNode("/root/EventBus").EmitSignal("PuckSpawned", this);
 	}
 
 

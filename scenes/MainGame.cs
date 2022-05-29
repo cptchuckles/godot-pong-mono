@@ -37,10 +37,7 @@ public class MainGame : Node2D
 	{
 		if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
 
-		var puck = (Puck)_puckScene.Instance();
-		_puckSpawnPoint.AddChild(puck);
-
-		GetNode("/root/EventBus").EmitSignal("PuckSpawned", puck);
+		_puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
 	}
 
 
