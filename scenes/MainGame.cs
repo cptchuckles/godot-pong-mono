@@ -27,7 +27,6 @@ public class MainGame : Node2D
 
 		var bus = GetNode<EventBus>("/root/EventBus");
 		bus.Connect("GoalMade", this, "OnGoalMade");
-		bus.Connect("AwardPoints", this, "OnPointsAwarded");
 
 		SpawnPuck();
 	}
@@ -43,14 +42,6 @@ public class MainGame : Node2D
 
 	private void OnGoalMade(Goal goal)
 	{
-		GD.Print($"{goal.Whose} made a goal!!!! OH MY GODDDDDDDD");
-
 		GetTree().CreateTimer(5).Connect("timeout", this, "SpawnPuck");
-	}
-
-
-	private void OnPointsAwarded(string whom, uint points)
-	{
-		GD.Print($"{whom} gained {points} points!");
 	}
 }

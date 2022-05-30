@@ -13,14 +13,16 @@ public class Scoreboard : Label
 
 	private void OnPointsAwarded(string whom, uint points)
 	{
+		GD.Print($"{whom} gained {points} points!");
+
 		switch(whom)
 		{
-			case "NPC":
-				_npcScore += points;
-				break;
-			case "Player":
-				_playerScore += points;
-				break;
+		case "NPC":
+			_npcScore += points;
+			break;
+		case "Player":
+			_playerScore += points;
+			break;
 		}
 
 		Text = $"{_npcScore} NPC    |    Player {_playerScore}";

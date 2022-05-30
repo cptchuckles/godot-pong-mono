@@ -17,7 +17,10 @@ public class Goal : Area2D
 	{
 		if (body is Puck puck)
 		{
+			GD.Print($"{Whose} made a goal!!!! OH MY GODDDDDDDD");
+
 			puck.QueueFree();
+
 			var bus = GetNode<EventBus>("/root/EventBus");
 			bus.EmitSignal("GoalMade", this);
 			bus.EmitSignal("AwardPoints", Whose, puck.Points);
