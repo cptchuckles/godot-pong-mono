@@ -18,7 +18,7 @@ public class Puck : KinematicBody2D
 
 	public override void _Ready()
 	{
-		Rotate((float)(GD.Randi() % 8) * Mathf.Pi/4 + Mathf.Pi/8);
+		Rotate((float)(GD.Randi() % 8) * Mathf.Pi/4 + Mathf.Pi/8 + (float)GD.RandRange(-0.15f, 0.15f));
 
 		SetAsToplevel(true);
 		GlobalPosition = ((Node2D)GetParent()).GlobalPosition;
