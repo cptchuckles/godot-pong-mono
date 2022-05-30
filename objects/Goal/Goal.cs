@@ -4,8 +4,7 @@ using System;
 public class Goal : Area2D
 {
 	[Export(PropertyHint.Enum, "Player,NPC")]
-	private string _whose;
-	public string Whose => _whose;
+	public string Whose { get; private set; } = "Player";
 
 
 	public override void _Ready()

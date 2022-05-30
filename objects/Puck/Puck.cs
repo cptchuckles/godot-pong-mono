@@ -12,8 +12,7 @@ public class Puck : KinematicBody2D
 
 	private uint _bonus = 10;
 
-	private uint _points = 10;
-	public uint Points => _points;
+	public uint Points { get; private set; } = 10;
 	private Label _pointsLabel;
 
 
@@ -43,15 +42,15 @@ public class Puck : KinematicBody2D
 			if (collision.Collider is Paddle)
 			{
 				_speed *= _acceleration;
-				_points += _bonus;
+				Points += _bonus;
 				_bonus += 10;
 			}
 			else
 			{
-				_points += 1;
+				Points += 1;
 			}
 
-			_pointsLabel.Text = $"+{_points}";
+			_pointsLabel.Text = $"+{Points}";
 		}
 	}
 

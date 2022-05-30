@@ -30,11 +30,10 @@ shape = SubResource( 1 )
 
 [node name="NPCGoal" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1081, 301 )
-_whose = "NPC"
+Whose = "NPC"
 
 [node name="PlayerGoal" parent="." instance=ExtResource( 3 )]
 position = Vector2( -57, 302 )
-_whose = "Player"
 
 [node name="PuckSpawnPoint" type="Position2D" parent="."]
 position = Vector2( 516, 297 )
