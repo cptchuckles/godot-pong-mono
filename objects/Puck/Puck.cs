@@ -71,11 +71,13 @@ public class Puck : KinematicBody2D
 				collideWithAreas: true
 				);
 
-		if (result["collider"] is Goal goal)
+		if (result.Contains("collider") && result["collider"] is Goal goal)
 		{
-			var bus = GetNode<EventBus>("/root/EventBus");
-			bus.EmitSignal("GoalMade", goal);
-			bus.EmitSignal("AwardPoints", goal.Whose, Points);
+			goal.Score(this);
+		}
+		else
+		{
+			GD.Print($"{GetPath()}: No goal found! Dying.");
 		}
 
 		QueueFree();

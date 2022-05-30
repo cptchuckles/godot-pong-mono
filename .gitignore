@@ -1,3 +1,4 @@
 .mono/
 .import/
 *.import
+mono_crash*
