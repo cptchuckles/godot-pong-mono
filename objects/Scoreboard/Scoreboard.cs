@@ -8,7 +8,7 @@ public class Scoreboard : Label
 
 	public override void _Ready()
 	{
-		GetNode("/root/EventBus").Connect("AwardPoints", this, "OnPointsAwarded");
+		GetNode("/root/EventBus").Connect("AwardPoints", this, nameof(OnPointsAwarded));
 	}
 
 	private void OnPointsAwarded(string whom, uint points)

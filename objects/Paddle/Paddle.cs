@@ -11,7 +11,7 @@ public class Paddle : KinematicBody2D
 	public override void _Ready()
 	{
 		_startingPosition = GlobalPosition;
-		GetNode("/root/EventBus").Connect("PuckSpawned", this, "OnPuckSpawned");
+		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
 	}
 
 	private void OnPuckSpawned(Puck puck)

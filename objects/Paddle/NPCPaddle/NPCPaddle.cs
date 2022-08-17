@@ -8,7 +8,7 @@ public class NPCPaddle : Paddle
 
 	public override void _Ready()
 	{
-		GetNode("/root/EventBus").Connect("PuckSpawned", this, "OnPuckSpawned");
+		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
 	}
 
 

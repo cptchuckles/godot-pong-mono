@@ -26,7 +26,7 @@ public class MainGame : Node2D
 		}
 
 		var bus = GetNode<EventBus>("/root/EventBus");
-		bus.Connect("GoalMade", this, "OnGoalMade");
+		bus.Connect("GoalMade", this, nameof(OnGoalMade));
 
 		SpawnPuck();
 	}
@@ -42,6 +42,6 @@ public class MainGame : Node2D
 
 	private void OnGoalMade(Goal goal)
 	{
-		GetTree().CreateTimer(5).Connect("timeout", this, "SpawnPuck");
+		GetTree().CreateTimer(5).Connect("timeout", this, nameof(SpawnPuck));
 	}
 }

@@ -11,8 +11,8 @@ public class Goal : Area2D
 
 	public override void _Ready()
 	{
-		Connect("body_entered", this, "OnBodyEntered");
-		GetNode("/root/EventBus").Connect("PuckSpawned", this, "OnPuckSpawned");
+		Connect("body_entered", this, nameof(OnBodyEntered));
+		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
 	}
 
 

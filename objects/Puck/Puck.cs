@@ -21,12 +21,12 @@ public class Puck : KinematicBody2D
 		Rotate((float)(GD.Randi() % 8) * Mathf.Pi/4 + Mathf.Pi/8 + (float)GD.RandRange(-0.15f, 0.15f));
 
 		SetAsToplevel(true);
-		GlobalPosition = ((Node2D)GetParent()).GlobalPosition;
+		GlobalPosition = GetParent<Node2D>().GlobalPosition;
 
 		GetNode<Node2D>("PointsPosition").SetAsToplevel(true);
 		_pointsLabel = GetNode<Label>("PointsPosition/PointsLabel");
 
-		GetNode("VisibilityNotifier2D").Connect("screen_exited", this, "OnExitScreen");
+		GetNode("VisibilityNotifier2D").Connect("screen_exited", this, nameof(OnExitScreen));
 
 		GetNode("/root/EventBus").EmitSignal("PuckSpawned", this);
 	}
@@ -58,7 +58,7 @@ public class Puck : KinematicBody2D
 	private void OnExitScreen()
 	{
 		if (IsQueuedForDeletion()) return;
-		GetTree().Connect("physics_frame", this, "CheckGoalAndDie", flags: (uint)ConnectFlags.Oneshot);
+		GetTree().Connect("physics_frame", this, nameof(CheckGoalAndDie), flags: (uint)ConnectFlags.Oneshot);
 	}
 
 
