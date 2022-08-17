@@ -1,16 +1,13 @@
 using Godot;
-using System;
 
 public class NPCPaddle : Paddle
 {
 	private Puck _puck;
 
-
 	public override void _Ready()
 	{
 		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
 	}
-
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -24,7 +21,6 @@ public class NPCPaddle : Paddle
 		float movement = Mathf.Clamp(-toMe.y, -frameSpeed, frameSpeed);
 		MoveAndCollide(new Vector2(0f, movement));
 	}
-
 
 	private void OnPuckSpawned(Puck puck)
 	{

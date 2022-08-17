@@ -1,6 +1,5 @@
 using Godot;
 using Dict = Godot.Collections.Dictionary;
-using System;
 
 public class Puck : KinematicBody2D
 {
@@ -14,7 +13,6 @@ public class Puck : KinematicBody2D
 
 	public uint Points { get; private set; } = 10;
 	private Label _pointsLabel;
-
 
 	public override void _Ready()
 	{
@@ -30,7 +28,6 @@ public class Puck : KinematicBody2D
 
 		GetNode("/root/EventBus").EmitSignal("PuckSpawned", this);
 	}
-
 
 	public override void _PhysicsProcess(float delta)
 	{
@@ -54,13 +51,11 @@ public class Puck : KinematicBody2D
 		}
 	}
 
-
 	private void OnExitScreen()
 	{
 		if (IsQueuedForDeletion()) return;
 		GetTree().Connect("physics_frame", this, nameof(CheckGoalAndDie), flags: (uint)ConnectFlags.Oneshot);
 	}
-
 
 	private void CheckGoalAndDie()
 	{

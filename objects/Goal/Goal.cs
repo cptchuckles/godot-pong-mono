@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class Goal : Area2D
 {
@@ -8,13 +7,11 @@ public class Goal : Area2D
 
 	private bool _active = true;
 
-
 	public override void _Ready()
 	{
 		Connect("body_entered", this, nameof(OnBodyEntered));
 		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
 	}
-
 
 	private void OnBodyEntered(Node body)
 	{
@@ -23,7 +20,6 @@ public class Goal : Area2D
 			Score(puck);
 		}
 	}
-
 
 	public void Score(Puck puck)
 	{
@@ -38,7 +34,6 @@ public class Goal : Area2D
 		bus.EmitSignal("GoalMade", this);
 		bus.EmitSignal("AwardPoints", Whose, puck.Points);
 	}
-
 
 	private void OnPuckSpawned(Puck puck)
 	{

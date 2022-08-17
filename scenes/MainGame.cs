@@ -8,7 +8,6 @@ public class MainGame : Node2D
 
 	private Node2D _puckSpawnPoint;
 
-
 	public override void _Ready()
 	{
 		GD.Randomize();
@@ -31,14 +30,12 @@ public class MainGame : Node2D
 		SpawnPuck();
 	}
 
-
 	private void SpawnPuck()
 	{
 		if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
 
 		_puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
 	}
-
 
 	private void OnGoalMade(Goal goal)
 	{
