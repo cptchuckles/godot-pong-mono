@@ -2,19 +2,19 @@ using Godot;
 
 public class Paddle : KinematicBody2D
 {
-	[Export]
-	protected float _speed = 200f;
+    [Export]
+    protected float _speed = 200f;
 
-	private Vector2 _startingPosition;
+    private Vector2 _startingPosition;
 
-	public override void _Ready()
-	{
-		_startingPosition = GlobalPosition;
-		GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
-	}
+    public override void _Ready()
+    {
+        _startingPosition = GlobalPosition;
+        GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
+    }
 
-	private void OnPuckSpawned(Puck puck)
-	{
-		GlobalPosition = new Vector2(_startingPosition.x, GlobalPosition.y);
-	}
+    private void OnPuckSpawned(Puck puck)
+    {
+        GlobalPosition = new Vector2(_startingPosition.x, GlobalPosition.y);
+    }
 }

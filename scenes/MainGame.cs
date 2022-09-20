@@ -1,44 +1,44 @@
-using Godot;
 using System;
+using Godot;
 
 public class MainGame : Node2D
 {
-	[Export]
-	private PackedScene _puckScene;
+    [Export]
+    private PackedScene _puckScene;
 
-	private Node2D _puckSpawnPoint;
+    private Node2D _puckSpawnPoint;
 
-	public override void _Ready()
-	{
-		GD.Randomize();
+    public override void _Ready()
+    {
+        GD.Randomize();
 
-		_puckSpawnPoint = GetNode<Node2D>("PuckSpawnPoint");
+        _puckSpawnPoint = GetNode<Node2D>("PuckSpawnPoint");
 
-		if (! IsInstanceValid(_puckSpawnPoint))
-		{
-			throw new ApplicationException($"{GetPath()}: No PuckSpawnPoint:Node2D child");
-		}
+        if (!IsInstanceValid(_puckSpawnPoint))
+        {
+            throw new ApplicationException($"{GetPath()}: No PuckSpawnPoint:Node2D child");
+        }
 
-		if (_puckScene is null)
-		{
-			throw new ApplicationException($"{GetPath()}: No puck scene selected");
-		}
+        if (_puckScene is null)
+        {
+            throw new ApplicationException($"{GetPath()}: No puck scene selected");
+        }
 
-		var bus = GetNode<EventBus>("/root/EventBus");
-		bus.Connect("GoalMade", this, nameof(OnGoalMade));
+        var bus = GetNode<EventBus>("/root/EventBus");
+        bus.Connect("GoalMade", this, nameof(OnGoalMade));
 
-		SpawnPuck();
-	}
+        SpawnPuck();
+    }
 
-	private void SpawnPuck()
-	{
-		if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
+    private void SpawnPuck()
+    {
+        if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
 
-		_puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
-	}
+        _puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
+    }
 
-	private void OnGoalMade(Goal goal)
-	{
-		GetTree().CreateTimer(5).Connect("timeout", this, nameof(SpawnPuck));
-	}
+    private void OnGoalMade(Goal goal)
+    {
+        GetTree().CreateTimer(5).Connect("timeout", this, nameof(SpawnPuck));
+    }
 }
