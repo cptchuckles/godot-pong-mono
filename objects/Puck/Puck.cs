@@ -32,7 +32,7 @@ public class Puck : KinematicBody2D
 	public override void _PhysicsProcess(float delta)
 	{
 		KinematicCollision2D collision = MoveAndCollide(GlobalTransform.y * _speed * delta);
-		if (collision != null)
+		if (collision is not null)
 		{
 			Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
 

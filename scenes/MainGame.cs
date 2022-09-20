@@ -19,7 +19,7 @@ public class MainGame : Node2D
 			throw new ApplicationException($"{GetPath()}: No PuckSpawnPoint:Node2D child");
 		}
 
-		if (_puckScene == null)
+		if (_puckScene is null)
 		{
 			throw new ApplicationException($"{GetPath()}: No puck scene selected");
 		}
