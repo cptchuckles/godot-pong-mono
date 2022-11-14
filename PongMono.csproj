@@ -1,7 +1,7 @@
 <Project Sdk="Godot.NET.Sdk/3.3.0">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>10</LangVersion>
 	<NoWarn>0649</NoWarn>
   </PropertyGroup>
 </Project>
