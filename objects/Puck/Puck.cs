@@ -32,23 +32,23 @@ public class Puck : KinematicBody2D
     public override void _PhysicsProcess(float delta)
     {
         KinematicCollision2D collision = MoveAndCollide(GlobalTransform.y * _speed * delta);
-        if (collision is not null)
+
+        if (collision is null) return;
+
+        Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
+
+        if (collision.Collider is Paddle)
         {
-            Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
-
-            if (collision.Collider is Paddle)
-            {
-                _speed *= _acceleration;
-                Points += _bonus;
-                _bonus += 10;
-            }
-            else
-            {
-                Points += 1;
-            }
-
-            _pointsLabel.Text = $"+{Points}";
+            _speed *= _acceleration;
+            Points += _bonus;
+            _bonus += 10;
         }
+        else
+        {
+            Points += 1;
+        }
+
+        _pointsLabel.Text = $"+{Points}";
     }
 
     private void OnExitScreen()
