@@ -54,7 +54,10 @@ public class Puck : KinematicBody2D
     private void OnExitScreen()
     {
         if (IsQueuedForDeletion()) return;
-        GetTree().Connect("physics_frame", this, nameof(CheckGoalAndDie), flags: (uint)ConnectFlags.Oneshot);
+        GetTree().Connect(signal: "physics_frame",
+                          target: this,
+                          method: nameof(CheckGoalAndDie),
+                          flags: (uint)ConnectFlags.Oneshot);
     }
 
     private void CheckGoalAndDie()

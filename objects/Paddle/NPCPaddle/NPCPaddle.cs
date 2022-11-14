@@ -15,7 +15,8 @@ public class NPCPaddle : Paddle
 
         Vector2 toMe = GlobalPosition - _puck.GlobalPosition;
 
-        if (_puck.GlobalTransform.y.Dot(new Vector2(toMe.x, 0f).Normalized()) < 0f) return;
+        if (_puck.GlobalTransform.y.Dot(new Vector2(toMe.x, 0f).Normalized()) < 0f)
+            return;
 
         float frameSpeed = _speed * delta;
         float movement = Mathf.Clamp(-toMe.y, -frameSpeed, frameSpeed);
