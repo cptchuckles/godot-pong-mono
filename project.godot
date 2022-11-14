@@ -22,6 +22,10 @@ EventBus="*res://globals/EventBus.cs"
 
 window/stretch/mode="2d"
 
+[mono]
+
+project/assembly_name="PongMono"
+
 [physics]
 
 common/enable_pause_aware_picking=true
