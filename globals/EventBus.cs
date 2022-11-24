@@ -3,9 +3,9 @@ using Godot;
 public class EventBus : Node
 {
     [Signal]
-    delegate void PuckSpawned(Puck puck);
+    public delegate void PuckSpawned(Puck puck);
     [Signal]
-    delegate void GoalMade(Goal goal);
+    public delegate void GoalMade(Goal goal);
     [Signal]
-    delegate void AwardPoints(string whom, uint points);
+    public delegate void AwardPoints(string whom, uint points);
 }

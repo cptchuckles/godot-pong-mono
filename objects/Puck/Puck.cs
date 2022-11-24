@@ -7,7 +7,7 @@ public class Puck : KinematicBody2D
     private float _speed = 200f;
 
     [Export]
-    private float _acceleration = 1.02f;
+    private readonly float _acceleration = 1.02f;
 
     private uint _bonus = 10;
 
@@ -16,7 +16,7 @@ public class Puck : KinematicBody2D
 
     public override void _Ready()
     {
-        Rotate((float)(GD.Randi() % 8) * Mathf.Pi / 4 + Mathf.Pi / 8 + (float)GD.RandRange(-0.15f, 0.15f));
+        Rotate((GD.Randi() % 8 * Mathf.Pi / 4) + (Mathf.Pi / 8) + (float)GD.RandRange(-0.15f, 0.15f));
 
         SetAsToplevel(true);
         GlobalPosition = GetParent<Node2D>().GlobalPosition;
@@ -33,7 +33,8 @@ public class Puck : KinematicBody2D
     {
         KinematicCollision2D collision = MoveAndCollide(GlobalTransform.y * _speed * delta);
 
-        if (collision is null) return;
+        if (collision is null)
+            return;
 
         Rotate(GlobalTransform.y.AngleTo(GlobalTransform.y.Bounce(collision.Normal)));
 
@@ -53,7 +54,9 @@ public class Puck : KinematicBody2D
 
     private void OnExitScreen()
     {
-        if (IsQueuedForDeletion()) return;
+        if (IsQueuedForDeletion())
+            return;
+
         GetTree().Connect(signal: "physics_frame",
                           target: this,
                           method: nameof(CheckGoalAndDie),

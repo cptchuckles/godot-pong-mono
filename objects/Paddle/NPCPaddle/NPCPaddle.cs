@@ -11,7 +11,8 @@ public class NPCPaddle : Paddle
 
     public override void _PhysicsProcess(float delta)
     {
-        if (!IsInstanceValid(_puck)) return;
+        if (!IsInstanceValid(_puck))
+            return;
 
         Vector2 toMe = GlobalPosition - _puck.GlobalPosition;
 

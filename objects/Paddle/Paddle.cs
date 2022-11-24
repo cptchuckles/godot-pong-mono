@@ -13,7 +13,7 @@ public class Paddle : KinematicBody2D
         GetNode("/root/EventBus").Connect("PuckSpawned", this, nameof(OnPuckSpawned));
     }
 
-    private void OnPuckSpawned(Puck puck)
+    private void OnPuckSpawned(Puck _)
     {
         GlobalPosition = new Vector2(_startingPosition.x, GlobalPosition.y);
     }

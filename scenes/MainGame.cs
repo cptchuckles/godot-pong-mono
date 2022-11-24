@@ -4,7 +4,7 @@ using Godot;
 public class MainGame : Node2D
 {
     [Export]
-    private PackedScene _puckScene;
+    private readonly PackedScene _puckScene;
 
     private Node2D _puckSpawnPoint;
 
@@ -32,7 +32,8 @@ public class MainGame : Node2D
 
     private void SpawnPuck()
     {
-        if (GetTree().GetNodesInGroup("Puck").Count > 0) return;
+        if (GetTree().GetNodesInGroup("Puck").Count > 0)
+            return;
 
         _puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
     }

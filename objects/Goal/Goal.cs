@@ -25,7 +25,9 @@ public class Goal : Area2D
     {
         puck.QueueFree();
 
-        if (!_active) return;
+        if (!_active)
+            return;
+
         _active = false;
 
         GD.Print($"{Whose} made a goal!!!! OH MY GODDDDDDDD");
@@ -35,7 +37,7 @@ public class Goal : Area2D
         bus.EmitSignal("AwardPoints", Whose, puck.Points);
     }
 
-    private void OnPuckSpawned(Puck puck)
+    private void OnPuckSpawned(Puck _)
     {
         _active = true;
     }
