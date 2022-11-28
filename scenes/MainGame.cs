@@ -16,12 +16,12 @@ public class MainGame : Node2D
 
         if (!IsInstanceValid(_puckSpawnPoint))
         {
-            throw new ApplicationException($"{GetPath()}: No PuckSpawnPoint:Node2D child");
+            throw new Exception($"{GetPath()}: No PuckSpawnPoint:Node2D child");
         }
 
         if (_puckScene is null)
         {
-            throw new ApplicationException($"{GetPath()}: No puck scene selected");
+            throw new Exception($"{GetPath()}: No puck scene selected");
         }
 
         var bus = GetNode<EventBus>("/root/EventBus");
