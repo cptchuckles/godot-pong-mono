@@ -24,8 +24,8 @@ public class MainGame : Node2D
             throw new Exception($"{GetPath()}: No puck scene selected");
         }
 
-        var bus = GetNode<EventBus>("/root/EventBus");
-        bus.Connect("GoalMade", this, nameof(OnGoalMade));
+        GetNode<EventBus>("/root/EventBus")
+            .Connect("GoalMade", this, nameof(OnGoalMade));
 
         SpawnPuck();
     }
