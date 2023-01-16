@@ -66,11 +66,10 @@ public class Puck : KinematicBody2D
     private void CheckGoalAndDie()
     {
         Dict result = GetWorld2d().DirectSpaceState.IntersectRay(
-                from: GlobalPosition,
-                to: new Vector2(GetViewport().Size.x / 2, GlobalPosition.y),
-                collideWithBodies: false,
-                collideWithAreas: true
-                );
+            from: GlobalPosition,
+            to: new Vector2(GetViewport().Size.x / 2, GlobalPosition.y),
+            collideWithBodies: false,
+            collideWithAreas: true);
 
         if (result.Contains("collider") && result["collider"] is Goal goal)
         {
