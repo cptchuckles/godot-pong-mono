@@ -25,8 +25,7 @@ public class Goal : Area2D
     {
         puck.QueueFree();
 
-        if (!_active)
-            return;
+        if (!_active) return;
 
         _active = false;
 
