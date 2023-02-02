@@ -16,7 +16,7 @@ public class NPCPaddle : Paddle
 
         Vector2 toMe = GlobalPosition - _puck.GlobalPosition;
 
-        if (_puck.GlobalTransform.y.Dot((toMe with { y = 0f }).Normalized()) < 0f)
+        if (_puck.GlobalTransform.y.Dot(toMe with { y = 0f }) < 0f)
             return;
 
         float frameSpeed = _speed * delta;
