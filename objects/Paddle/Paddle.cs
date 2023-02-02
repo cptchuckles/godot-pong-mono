@@ -15,6 +15,6 @@ public class Paddle : KinematicBody2D
 
     private void OnPuckSpawned(Puck _)
     {
-        GlobalPosition = new Vector2(_startingPosition.x, GlobalPosition.y);
+        GlobalPosition = GlobalPosition with { x = _startingPosition.x };
     }
 }
