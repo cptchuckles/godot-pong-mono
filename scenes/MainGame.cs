@@ -35,7 +35,7 @@ public class MainGame : Node2D
         if (GetTree().GetNodesInGroup("Puck").Count > 0)
             return;
 
-        _puckSpawnPoint.AddChild((Puck)_puckScene.Instance());
+        _puckSpawnPoint.AddChild(_puckScene.Instance<Puck>());
     }
 
     private void OnGoalMade(Goal goal)
